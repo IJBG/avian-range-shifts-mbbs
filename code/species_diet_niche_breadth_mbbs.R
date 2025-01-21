@@ -14,7 +14,7 @@ output_dir <- "derived_data/"
 bird_traits <- read.csv(paste0(data_dir, "breeding_bird_diet_mig_forage_traits.csv"), stringsAsFactors = F)
 
 ## Species list 
-species_list <- read.csv(paste0(data_dir, "species_list.csv"), stringsAsFactors = F)
+species_list <- read.csv(paste0(data_dir, "species_list_mbbs.csv"), stringsAsFactors = F)
 
 ## Filter to species of interest
 bird_diets <- bird_traits %>%
@@ -29,4 +29,5 @@ diet_niche_breadth <- bird_diets %>%
   pivot_longer(names_to = "diet_cat", values_to = "prop", Diet.Inv:Diet.PlantO) %>%
   group_by(genus, species, english_common_name, aou, binomial) %>%
   summarize(shannonE_diet = -sum( (prop/100) * log(prop/100) / log(max_diet), na.rm = T))
-# write.csv(diet_niche_breadth, paste0(output_dir, "diet_niche_breadth.csv"), row.names = F)
+
+write.csv(diet_niche_breadth, paste0(output_dir, "diet_niche_breadth_mbbs.csv"), row.names = F)

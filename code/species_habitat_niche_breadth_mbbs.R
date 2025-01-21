@@ -22,10 +22,12 @@ bioark <- ifelse(grepl("apple", info$platform), "/Volumes", "\\\\bio.unc.edu")
 
 ## species range maps directory
 range_dir <- paste0(bioark, "/hurlbertlab/GIS/birds/All/All/")
+#for ijbg mbbs purposes
+range_dir <- "Z:/GIS/birds/All/All/"
 
 ### Species list 
 
-species_list <- read.csv(paste0(rawdata, "species_list.csv"), stringsAsFactors = F)
+species_list <- read.csv(paste0(rawdata, "species_list_mbbs.csv"), stringsAsFactors = F)
 
 # Match BBS taxonomy with breeding range polygon taxonomy
 fix_mismatch <- read.csv(paste0(derived_data, "fix_breedingrange_genus_mismatch.csv"), stringsAsFactors = F) %>%
