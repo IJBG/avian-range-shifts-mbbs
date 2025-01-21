@@ -6,6 +6,7 @@ library(tidyverse)
 library(purrr)
 library(tmap)
 library(sf)
+library(dplyr)
 
 ### Plotting theme
 
@@ -18,10 +19,10 @@ derived_data <- "derived_data/"
 
 ## BioArk directory
 info <- sessionInfo()
-bioark <- ifelse(grepl("apple", info$platform), "/Volumes", "\\\\bio.unc.edu")
+#bioark <- ifelse(grepl("apple", info$platform), "/Volumes", "\\\\bio.unc.edu")
 
 ## species range maps directory
-range_dir <- paste0(bioark, "/hurlbertlab/GIS/birds/All/All/")
+#range_dir <- paste0(bioark, "/hurlbertlab/GIS/birds/All/All/")
 #for ijbg mbbs purposes
 range_dir <- "Z:/GIS/birds/All/All/"
 
@@ -55,6 +56,7 @@ range_files <- data.frame(file = list.files(range_dir)) %>%
   filter(grepl(".shp", file)) %>%
   mutate(spp_name = word(file, 1, 2, sep = "_"),
          file_binomial = gsub("_", " ", spp_name)) 
+#if getting issues finding the function 'word' you need to switch to R/4.4.1, doesn't work in 4.4.2
 
 # Match with eBird codes
 
